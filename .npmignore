@@ -1,0 +1,16 @@
+
+.idea
+.DS_Store
+node_modules/
+eslintrc.cjs
+babel.config.cjs
+index.html
+jest.config.cjs
+jest.setup.cjs
+package.json
+package-lock.json
+/src
+tsconfig.jest.json
+tsconfig.json
+tsconfig.node.json
+vite.config.ts

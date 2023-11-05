@@ -52,3 +52,5 @@ npm i react-if-render
 
 * 0.0.1
     * publish
+* 0.0.2
+  * update package dependencies, readme

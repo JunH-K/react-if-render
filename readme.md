@@ -1,6 +1,7 @@
 # Beautiful React Conditional Rendering
 
 [![npm](https://img.shields.io/npm/v/react-if-render)](https://www.npmjs.com/package/react-if-render)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-if-render?label=bundle%20size&logo=webpack)](https://bundlephobia.com/result?p=react-if-render)
 [![Downloads](https://img.shields.io/npm/dt/react-if-render)](http://npm-stat.com/charts.html?package=react-if-render)
 [![license](https://img.shields.io/npm/l/react-if-render)](https://img.shields.io/npm/l/react-if-render)
 

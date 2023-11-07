@@ -1,0 +1,39 @@
+name: Jest Test
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+
+jobs:
+  jest-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        id: cache-dependencies-jest
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+      - if: steps.cache-dependencies-jest.outputs.cache-hit == 'true'
+        run: echo 'cache hit!'
+      - if: steps.cache-dependencies-jest.outputs.cache-hit != 'true'
+        run: echo 'cache missed!'
+
+      - name: Install dependencies
+        if: steps.cache-dependencies-jest.outputs.cache-hit != 'true'
+        run: yarn
+
+      - name: Jest run
+        run: yarn test

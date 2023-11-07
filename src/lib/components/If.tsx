@@ -1,35 +1,38 @@
-import { Fragment, Children, isValidElement } from "react";
+import { Fragment, Children, isValidElement, ReactNode } from "react";
+import { ELSE, THEN, WARN_MESSAGE } from "../constant";
 
 type Props = {
   condition: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
-const WARN_MESSAGE = "If the component's children should be Then and Else";
-
 function If({ condition, children }: Props) {
-  return (
-    <Fragment>
-      {Children.map(children, (child) => {
-        if (
-          isValidElement(child) &&
-          typeof child.type !== "string" &&
-          "displayName" in child.type &&
-          typeof child.type.displayName === "string"
-        ) {
-          const { displayName } = child.type;
+  const processChild = (child: ReactNode) => {
+    if (!isValidElement(child)) return handleInvalidChild();
+    if (typeof child.type === "string") return handleInvalidChild();
+    if (!("displayName" in child.type)) return handleInvalidChild();
+    if (typeof child.type.displayName !== "string") return handleInvalidChild();
 
-          if (condition && displayName === "Then") {
-            return child;
-          } else if (!condition && displayName === "Else") {
-            return child;
-          }
-        }
-        console.warn(WARN_MESSAGE);
-        return null;
-      })}
-    </Fragment>
-  );
+    const { displayName } = child.type;
+    const isThen = condition && displayName === THEN;
+    const isElse = !condition && displayName === ELSE;
+    const isExtra = ![THEN, ELSE].includes(displayName);
+
+    if (isThen || isElse) {
+      return child;
+    } else if (isExtra) {
+      console.warn(WARN_MESSAGE);
+      return null;
+    }
+    return null;
+  };
+
+  return <Fragment>{Children.map(children, processChild)}</Fragment>;
 }
+
+const handleInvalidChild = () => {
+  console.warn(WARN_MESSAGE);
+  return null;
+};
 
 export default If;

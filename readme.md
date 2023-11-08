@@ -7,13 +7,18 @@
 
 You can achieve beautiful conditional rendering in React.
 
-> Usage
+> Install
+```bash
+npm i react-if-render
+```
 
+> Usage
 ```javascript
 import { Else, If, Then } from "react-if-render";
 
 export default function Example() {
   const isTrue = true;
+  const isFalse = false;
 
   return (
           <div>
@@ -30,6 +35,23 @@ export default function Example() {
                 <Then>Render when the condition is true.</Then>
                 <Else>Render when the condition is false</Else>
               </If>
+
+              <If condition={isFalse}>
+                <Then>Render when the condition is true.</Then>
+                <Else>Render when the condition is false</Else>
+              </If>
+            </div>
+
+            <div>
+              <When condition={isTrue}>
+                <div>Render when the condition is true.</div>
+              </When>
+            </div>
+
+            <div>
+              <Unless condition={isFalse}>
+                <div>Render when the condition is false.</div>
+              </Unless>
             </div>
           </div>
   );
@@ -40,18 +62,46 @@ export default function Example() {
 
 > Online Example
 
-[Codesandbox Example](https://codesandbox.io/s/react-if-render-38cfm4)
+[Try Codesandbox](https://codesandbox.io/s/react-if-render-38cfm4)
 
 
-> Install
+> Description
+1. `<If>`
 
-```bash
-npm i react-if-render
-```
+```javascript
+<If condition={true || false}>
+  <Then>Render when the condition is true.</Then>
+  <Else>Render when the condition is false</Else>
+</If>
+ ```
+  * `<If condition={true}>` → The children of `<Then>` are rendered.
+  * `<If condition={false}>` → The children of `<Else>` are rendered.
+
+
+2. `<When>`
+```javascript
+<When condition={true}>
+  <div>Render when the condition is true.</div>
+</When>
+ ```
+* `<When condition={true}>` →  The children of `<When>` are rendered.
+
+
+3. `<Unless>`
+```javascript
+<Unless condition={false}>
+  <div>Render when the condition is false.</div>
+</Unless>
+ ```
+  * `<Unless condition={false}>`  →  The children of `<Unless>` are rendered.
+
+
 
 ## release note
 
 * 0.0.1
-    * publish
+  * Publish
 * 0.0.2
-  * update package dependencies, readme
+  * Update package dependencies, readme
+* 0.0.3
+  *  Adding the 'When' and 'Unless' Components

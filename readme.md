@@ -14,7 +14,7 @@ npm i react-if-render
 
 > Usage
 ```javascript
-import { Else, If, Then } from "react-if-render";
+import { Else, If, Then, When, Unless } from "react-if-render";
 
 export default function Example() {
   const isTrue = true;
@@ -105,3 +105,5 @@ export default function Example() {
   * Update package dependencies, readme
 * 0.0.3
   *  Adding the 'When' and 'Unless' Components
+* 0.0.4
+  *  hotfix

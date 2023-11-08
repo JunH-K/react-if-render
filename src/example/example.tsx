@@ -1,6 +1,4 @@
-import { Else, If, Then } from "../lib";
-import When from "../lib/components/When";
-import Unless from "../lib/components/Unless";
+import { Else, If, Then, When, Unless } from "../lib";
 
 export default function Example() {
   const isTrue = true;

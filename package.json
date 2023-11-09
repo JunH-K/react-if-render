@@ -35,7 +35,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "node src/example/index.cjs && tsc && vite build",
     "preview": "vite preview",
     "test": "jest"
   },
